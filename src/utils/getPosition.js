@@ -70,6 +70,11 @@ export default function (e, target, node, place, effect, offset) {
       result = true // If vertical ok, but let out of side and right won't out of side
       newPlace = 'right'
     }
+    if (!result && getTipOffsetLeft('left') < 0 && getTipOffsetRight('right') >= windowWidth) {
+      result = true
+      newPlace = 'top'
+    }
+
     return {result, newPlace}
   }
   const outsideRight = () => {
@@ -81,6 +86,11 @@ export default function (e, target, node, place, effect, offset) {
       result = true
       newPlace = 'left'
     }
+    if (!result && getTipOffsetRight('right') > windowWidth && getTipOffsetLeft('left') < 0) {
+      result = true
+      newPlace = 'top'
+    }
+
     return {result, newPlace}
   }
 
